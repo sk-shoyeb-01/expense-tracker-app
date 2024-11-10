@@ -1,4 +1,5 @@
 import 'package:expensetracker/data/transaction_data.dart';
+import 'package:expensetracker/screens/profile/profile_main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -60,7 +61,13 @@ class MainScreen extends StatelessWidget {
                 Row(
                   children: [
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ProfileMain()),
+                          );
+                        },
                         icon: const Icon(CupertinoIcons.settings)),
                   ],
                 )
