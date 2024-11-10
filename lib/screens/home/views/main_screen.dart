@@ -1,3 +1,4 @@
+import 'package:expensetracker/data/transaction_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -220,10 +221,10 @@ class MainScreen extends StatelessWidget {
             Expanded(
                 child: ListView.builder(
                     padding: const EdgeInsets.all(6),
-                    itemCount: 10,
+                    itemCount: transactionData.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                          padding: EdgeInsets.only(bottom: 16),
+                          padding: const EdgeInsets.only(bottom: 16),
                           child: Container(
                               height: 80,
                               decoration: BoxDecoration(
@@ -236,7 +237,7 @@ class MainScreen extends StatelessWidget {
                                         offset: const Offset(4, 4))
                                   ]),
                               child: Padding(
-                                padding: EdgeInsets.all(8),
+                                padding: const EdgeInsets.all(8),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -249,46 +250,52 @@ class MainScreen extends StatelessWidget {
                                             Container(
                                               width: 50,
                                               height: 50,
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
-                                                  color: Colors.yellow),
+                                                  color: transactionData[index]
+                                                      ["color"]),
                                             ),
-                                            const Icon(
-                                              CupertinoIcons.person_fill,
-                                              color: Colors.white,
-                                            )
+                                            transactionData[index]["icon"],
                                           ],
                                         ),
-                                        const Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            SizedBox(
-                                              width: 60,
-                                            ),
-                                            Text(
-                                              "Food ",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 16),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    const Row(
-                                      children: [
                                         Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Text("-\$45.00",
-                                                style: TextStyle(
+                                            Row(
+                                              children: [
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Text(
+                                                  '${transactionData[index]["name"]}',
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 16),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                                "${transactionData[index]['totalAmount']}",
+                                                style: const TextStyle(
                                                     fontWeight: FontWeight.w800,
                                                     fontSize: 16)),
                                             Text(
-                                              "Today",
-                                              style: TextStyle(
+                                              "${transactionData[index]['date']}",
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   color: Color.fromARGB(
                                                       255, 199, 194, 194)),
