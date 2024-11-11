@@ -44,14 +44,16 @@ class ProfileMain extends StatelessWidget {
                   ),
                 ),
               ),
-              actions: [
+              actions: const [
                 SizedBox(width: 16), // Extra right padding if needed
               ],
             ),
           ),
         ),
       ),
-      body: ProfileBody(),
+      body: const SingleChildScrollView(
+        child: ProfileBody(),
+      ),
     );
   }
 }
